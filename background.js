@@ -6,5 +6,11 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.tabs.onCreated.addListener(() => {
-	chrome.tabs.update({ url: "https://feedbin.com" });
+	chrome.tabs.query({ active: true }, (tabs) => {
+		let url = tabs[0].url;
+		console.log(url);
+		if (url === "") {
+			chrome.tabs.update({ url: "https://feedbin.com" });
+		}
+	});
 });
