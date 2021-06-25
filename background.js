@@ -5,7 +5,7 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 chrome.tabs.onCreated.addListener(() => {
-	chrome.tabs.query({ active: true }, (tabs) => {
+	chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 		let url = tabs[0].url;
 
 		if (url === "") {
